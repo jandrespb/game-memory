@@ -1,10 +1,10 @@
-// Array para almacenar el estado de los clics
+// Objeto para manejar los estados de los clics
 const manejoEstadosClick = {
     titulo: null,
     concepto: null
 };
 
-// Declaración elementos del DOM
+// Declaración variables -> DOM
 const titulos = Array.from({ length: 3 }, (_, i) => document.getElementById(`titulo_${i + 1}`));
 const conceptos = Array.from({ length: 3 }, (_, i) => document.getElementById(`concepto_${i + 1}`));
 const contenedorConceptos = document.getElementById('concepto');
@@ -17,29 +17,29 @@ function cambiarColor(carta, color) {
 
     const backTitulo = carta.querySelector('.backtitulo');
     const backConcepto = carta.querySelector('.backconcepto');
-    
+
     if (backTitulo) backTitulo.style.backgroundColor = color;
     if (backConcepto) backConcepto.style.backgroundColor = color;
 }
 
-function cambiarPosicionCarta (elemento, transformacion) {
+function cambiarPosicionCarta(elemento, transformacion) {
 
     elemento.style.transform = transformacion;
 }
 
-// Funciones que manejan la lógica del juego
-function confCartasIguales (tituloIndex, conceptoIndex) {
+// Funciones que contienen la lógica del juego
+function confCartasIguales(tituloIndex, conceptoIndex) {
 
     cambiarColor(titulos[tituloIndex], 'rgba(129, 204, 123, 0.4)');
-    cambiarColor(conceptos[conceptoIndex], 'rgba(129, 204, 123, 0.4)'); 
+    cambiarColor(conceptos[conceptoIndex], 'rgba(129, 204, 123, 0.4)');
 
     const tituloEtiqueta_h3 = titulos[tituloIndex].querySelector('.backtitulo h3').innerText;
     conceptos[conceptoIndex].querySelector('.backconcepto h3').innerText = tituloEtiqueta_h3;
     const backTitulo = titulos[tituloIndex].querySelector('.backtitulo');
     const backConcepto = conceptos[conceptoIndex].querySelector('.backconcepto');
-    
- cambiarPosicionCarta(backTitulo, 'perspective(600px) rotateY(360deg)');
- cambiarPosicionCarta(backConcepto, 'perspective(600px) rotateY(360deg)');
+
+    cambiarPosicionCarta(backTitulo, 'perspective(600px) rotateY(360deg)');
+    cambiarPosicionCarta(backConcepto, 'perspective(600px) rotateY(360deg)');
 }
 
 function confCartasDiferentes(tituloIndex, conceptoIndex) {
@@ -69,7 +69,7 @@ function ejecucionJuegoCartas() {
         const conceptoIndex = parseInt(manejoEstadosClick.concepto.replace('concepto_', '')) - 1;
 
         if (tituloIndex === conceptoIndex) {
-            console.log('Son iguales');    
+            console.log('Son iguales');
             confCartasIguales(tituloIndex, conceptoIndex);
 
         } else {
@@ -81,6 +81,7 @@ function ejecucionJuegoCartas() {
             }, 2000);
         }
 
+        // Restablece los estados de los clics
         manejoEstadosClick.titulo = null;
         manejoEstadosClick.concepto = null;
     }
@@ -90,11 +91,11 @@ function ejecucionAleatoriaCartas(container) {
 
     const elementsArray = Array.from(container.children);
     const shuffledElements = shuffle(elementsArray);
-    
+
     while (container.firstChild) {
         container.removeChild(container.firstChild);
     }
-    
+
     shuffledElements.forEach(element => {
         container.appendChild(element);
     });
@@ -104,18 +105,18 @@ function ejecucionAleatoriaCartas(container) {
 // llamado de los eventos de clic para cada elemento (título, concepto y aleatorio)
 titulos.forEach((contenedorTitulo, index) => {
     contenedorTitulo.addEventListener('click', () => {
-        
-            manejoEstadosClick.titulo = `titulo_${index + 1}`;
-            const backTitulo = contenedorTitulo.querySelector('.backtitulo');
-            backTitulo.classList.toggle('hover'); 
-            ejecucionJuegoCartas(); 
+
+        manejoEstadosClick.titulo = `titulo_${index + 1}`;
+        const backTitulo = contenedorTitulo.querySelector('.backtitulo');
+        backTitulo.classList.toggle('hover');
+        ejecucionJuegoCartas();
     });
 });
 
 conceptos.forEach((contenedorConcepto, index) => {
     contenedorConcepto.addEventListener('click', () => {
         manejoEstadosClick.concepto = `concepto_${index + 1}`;
-        ejecucionJuegoCartas(); 
+        ejecucionJuegoCartas();
     });
 });
 
