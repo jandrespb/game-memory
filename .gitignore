@@ -1,0 +1,18 @@
+# Node modules (si usas npm)
+node_modules/
+
+# Archivos de configuración del IDE o editor de texto
+.vscode/
+.idea/
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Archivos temporales de sistemas operativos
+*.tmp
+*.log
+
+# Archivos de compilación o distribución
+/dist/
+/build/
