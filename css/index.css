@@ -1,0 +1,144 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #b6b5ba;
+}
+
+.contenedor {
+    width: 1200px;
+    background: rgba(35, 70, 144, 0.8);
+    margin: 10px auto;
+    border-radius: 10px;
+}
+
+.tituloContenedor {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    font-size: 45px;
+    color:#fcfcfc;
+    padding: 20px;
+    
+}
+
+.contenedor_caja {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.carta {
+    position: relative;
+    width: 200px;
+    height: 300px;
+    margin: 15px;
+}
+
+.carta .face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: .5s;
+}
+
+.carta .front {
+    transform: perspective(600px) rotateY(0deg);/* revisar la parte de atras -180deg*/
+    box-shadow: 0 5px 10px #000;
+}
+
+.carta .front img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.carta .backtitulo {
+    transform: perspective(600px) rotateY(180deg); /* revisar la parte de atras 0deg*/
+    background: rgb(64,60,131);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #f3f3f3;
+    text-align: center;
+    box-shadow: 0 5px 10px #000;
+}
+
+.carta .backtitulo h3 {
+    font-size: 30px;
+    letter-spacing: 1.5px;
+}
+
+.carta .backconcepto {
+    transform: perspective(600px) rotateY(180deg); /* revisar la parte de atras 0deg*/
+    background: rgb(3,55,54);
+    color: #f3f3f3;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    box-shadow: 0 5px 10px #000;
+}
+
+.carta .backconcepto h3 {
+    font-size: 30px;
+    letter-spacing: 2px;
+    margin-top: 10px;
+}
+
+.carta .backconcepto p {
+    letter-spacing: 1px;
+}
+
+/*Efectos rotar*/
+
+.carta:hover .front {
+    transform: perspective(600px) rotateY(180deg);
+}
+
+
+.carta:hover .backtitulo {
+    transform: perspective(600px) rotateY(360deg);
+}
+
+.carta:hover .backconcepto {
+    transform: perspective(600px) rotateY(360deg);
+
+}
+
+/*JS*/
+
+.backtitulo.hover{
+    background: rgba(148, 153, 31, 0.4);
+    transform: perspective(600px) rotateY(360deg);
+}
+
+.btnjugar{
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.jugar {
+    background: #e2a539;
+    color: #fff;
+    font-size: 30px;
+    text-decoration: none;
+    padding: 15px 40px;
+    display: inline-block;
+    margin: 0px 10px;
+    border-radius: 100px;
+    cursor: pointer;
+}
